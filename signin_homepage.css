@@ -1,0 +1,154 @@
+* {
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+  box-sizing: border-box;
+}
+
+nav {
+  display: flex;
+  justify-content: space-between;
+  height: 35px;
+  font-size: 20px;
+  padding: 10px 20px;
+  align-items: center;
+}
+
+nav section {
+  width: auto;
+  height: 40px;
+  align-items: center;
+}
+
+.left-nav-item {
+  display: flex;
+  margin-right: 5px;
+}
+
+.hamburger-menu {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  margin-right: 10px;
+}
+
+.hamburger-menu:hover {
+  background-color: #eaeaea;
+  cursor: pointer;
+}
+
+#youtube .icon {
+  display: flex;
+  align-items: center;
+}
+
+#youtube p {
+  margin-left: 5px;
+}
+
+#youtube p sup {
+  font-size: 12px;
+}
+
+.searchbar {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.searchbar form {
+  display: flex;
+  align-items: center;
+}
+
+.searchbar form input {
+  width: 550px;
+  height: 40px;
+  border-top-left-radius: 50px;
+  border-bottom-left-radius: 50px;
+  border-style: none;
+  box-shadow: rgba(0, 0, 0, 0.05) 0px 0px 0px 1px,
+    rgb(209, 213, 219) 0px 0px 0px 1px inset;
+  padding-left: 15px;
+  font-size: 16px;
+}
+
+.searchbar form input:b {
+}
+
+.searchbar button {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 60px;
+  height: 40px;
+  background-color: #f7f7f7;
+  border-top-right-radius: 50px;
+  border-bottom-right-radius: 50px;
+  border-style: none;
+  box-shadow: rgba(0, 0, 0, 0.05) 0px 0px 0px 1px,
+    rgb(209, 213, 219) 0px 0px 0px 1px inset;
+  margin-right: 10px;
+  cursor: pointer;
+}
+
+.searchbar button:hover {
+  background-color: #eaeaea;
+}
+
+.mic-logo {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+}
+
+.mic-logo:hover {
+  background-color: #eaeaea;
+  cursor: pointer;
+}
+
+.create-video {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 40px;
+  height: 40px;
+  margin-right: 25px;
+  border-radius: 50%;
+}
+
+.create-video:hover {
+  background-color: #eaeaea;
+  cursor: pointer;
+}
+
+.notification {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 40px;
+  height: 40px;
+  margin-right: 25px;
+  border-radius: 50%;
+}
+
+.notification:hover {
+  background-color: #eaeaea;
+  cursor: pointer;
+}
+
+.user-profile {
+  width: 35px;
+  height: 35px;
+  background-color: blueviolet;
+  border-radius: 50%;
+}

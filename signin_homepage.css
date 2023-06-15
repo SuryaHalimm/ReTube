@@ -152,3 +152,56 @@ nav section {
   background-color: blueviolet;
   border-radius: 50%;
 }
+
+.right-nav-item {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.setting-menu {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 40px;
+  height: 40px;
+  margin-right: 15px;
+  border-radius: 50%;
+}
+
+.setting-menu:hover {
+  background-color: #eaeaea;
+  cursor: pointer;
+}
+
+.signin-button {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-style: none;
+  box-shadow: rgba(0, 0, 0, 0.05) 0px 0px 0px 1px,
+    rgb(209, 213, 219) 0px 0px 0px 1px inset;
+  border-radius: 50px;
+  width: 80px;
+  height: 30px;
+  padding: 2px 10px;
+}
+
+.signin-button:hover {
+  background-color: lightblue;
+  cursor: pointer;
+}
+
+.signin-button .signin-logo {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 50%;
+}
+
+.signin-button p {
+  font-size: 14px;
+  font-family: Arial, Helvetica, sans-serif;
+  margin-left: 5px;
+  color: blue;
+}

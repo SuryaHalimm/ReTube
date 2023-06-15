@@ -1,4 +1,5 @@
 * {
+  text-decoration: none;
   margin: 0;
   padding: 0;
 }
@@ -41,6 +42,10 @@ nav section {
 .hamburger-menu:hover {
   background-color: #eaeaea;
   cursor: pointer;
+}
+
+.home {
+  color: black;
 }
 
 #youtube .icon {

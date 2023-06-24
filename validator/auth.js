@@ -1,18 +1,21 @@
-const joi = require('joi');
+const jwt = require('jsonwebtoken');
 
-module.exports = {
-  register: {
-    body: {
-      email: joi.string().email().required(),
-      username: joi.string().min(3).max(100).required(),
-      password: joi.string().min(6).max(32).required(),
-    },
-  },
+function authenticateToken (req, res, next) {
+  const accessToken = req.cookies['accessToken'];
+  try{
+    if(!accessToken) {
+      return res.sendStatus(401);
+    }
+    const tokenValid = jwt.verify(accessToken, process.env.ACCESS_TOKEN_KEY, (err, user) => {
+      if (err) {
+        return res.sendStatus(403);
+      }
+      req.user = user;
+      next();
+    });
+  }catch(err){
+    console.log(err);
+  }
+}
 
-  login: {
-    body: {
-      email: joi.string().email().required(),
-      password: joi.string().required(),
-    },
-  },
-};
+module.exports = {authenticateToken};

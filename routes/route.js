@@ -1,42 +1,30 @@
 const express = require('express');
-const { celebrate } = require('celebrate');
+
 const userController = require('../controller/userController');
-const { login } = require('../controller/userController');
-const authValidator = require('../validator/auth');
-const router = express.Router();
+const { login, register } = require('../controller/userController');
+const { authenticateToken } = require('../validator/auth');
+const router = express();
 
 router.get('/', (req, res) => {
-    res.render('pages/index');
+    res.render('pages/homepageSignIn');
+});
+
+router.get('/index', authenticateToken, (req, res) => {
+    res.render('pages/index', {name: req.user.username})
 });
 
 router.get('/SignUp', (req, res) => {
     res.render('pages/SignUp');
 });
 
-router.get('/login', (req, res) => {
+router.get('/login',(req, res) => {
     res.render('pages/login');
 });
 
-router.post('/login', celebrate(authValidator.login), login);
+router.post('/login', login);
 
 
-router.post('/SignUp', celebrate(authValidator.register),async(req, res) => {
-    // const error = [];
-    const existingUser = await userController.findByEmail(req.body.email);
-    if(existingUser) {
-        res.json({
-            message:"email ini sudah digunakan"
-        });
-    } else {
-        await userController.create(
-            req.body.email,
-            req.body.full_name,
-            req.body.password,
-          );
-        
-        res.redirect('/login');
-    }
-});
+router.post('/SignUp', register);
 
 
 // router.post('/login', 

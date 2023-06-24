@@ -1,19 +1,25 @@
-const express = require('express');
-const flash = require('connect-flash');
-const bcrypt = require('bcrypt');
+require('dotenv').config();
 const User = require('../models/user');
 const { hashPassword, comparePassword } =  require('../helpers/crypto');
+const { celebrate } = require('celebrate')
+const jwt = require('jsonwebtoken');
+const authValidator = require('../validator/auth');
 
-async function create(name, email, password, re_password) {
+const register = async(req, res) => {
+  const {user_name, email, password} = req.body;
   const hashedPassword = await hashPassword(password);
+  try{
     const newUser = new User({
-      username: name,
-      email,
+      username: user_name,
+      email: email,
       password: hashedPassword,
-      re_password: hashedPassword
-  });
-
-  return newUser.save()
+    });
+    console.log(newUser);
+    res.redirect('/login')
+  return newUser.save();
+  } catch (err) {
+    console.log(err.message)
+  }
 }
 
 async function findByEmail(email) {
@@ -21,17 +27,25 @@ async function findByEmail(email) {
 }
 
 const login = async(req, res) => {
-    const {email, password} = req.body;
+  const {email, password} = req.body;
+  try{
     const user = await User.findOne({email: email}).exec();
-  if (!user) {
-    return null;
-  } 
-  const passwordMatched = await comparePassword(password, user.password);
-  if(!passwordMatched){
-    res.redirect('login');
+    if (!user) {
+      return res.redirect('/login');
+    } 
+    const passwordMatched = await comparePassword(password, user.password);
+    if(!passwordMatched){
+      return res.redirect('/login');
+    }
+
+    const accessToken = jwt.sign(user.toJSON(), process.env.ACCESS_TOKEN_KEY);
+    res.cookie('accessToken', accessToken, { httpOnly: true });
+    res.redirect('/index');
+
+  } catch (err) {
+    console.log(err.message)
   }
-  res.redirect('/');
-}
+};
 
 
 async function findByName(name) {
@@ -39,7 +53,7 @@ async function findByName(name) {
 }
 
 module.exports = {
-  create,
+  register,
   findByEmail,
   login,
   findByName

@@ -1,33 +1,141 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
-    <link rel="stylesheet" href="../public/css/style.css">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="./css/signinHomepageStyle.css" />
     <title>Youtube</title>
-</head>
-<body>
-    <nav class="navbar navbar-expand-lg border-bottom">
-        <div class="container-fluid">
-          <a href="#"><iconify-icon icon="entypo-social:youtube" style="color: red;" width="30" height="30"></iconify-icon></a>
-          <a class="navbar-brand p-1" href="#">YouTube <sup>ID</sup></a>
-          <form class="d-flex m-auto" role="search">
-            <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-            <button class="btn btn-outline-success" type="submit"><iconify-icon icon="octicon:search-24"></iconify-icon></button>
-          </form>
-          <button type="submit" class="upload m-auto">
-            <iconify-icon icon="carbon:video-add" width="20" height="15"></iconify-icon>
-          </button>
-          </div>
+  </head>
+  <body>
+    <nav>
+      <section class="left-nav-item">
+        <div class="hamburger-menu">
+          <iconify-icon icon="clarity:menu-line"></iconify-icon>
         </div>
-      </nav>
-
-    <div class="container">
-      
-    </div>
+        <a href="#" class="home">
+          <div id="youtube">
+            <div class="icon">
+              <iconify-icon
+                icon="entypo-social:youtube"
+                style="color: red"
+                width="30"
+                height="30"
+              ></iconify-icon>
+              <p>Youtube<sup>ID</sup></p>
+            </div>
+          </div>
+        </a>
+      </section>
+      <section class="searchbar">
+        <form action="POST">
+          <input type="text" placeholder="Search" />
+          <button type="submit">
+            <iconify-icon
+              icon="carbon:search"
+              width="20"
+              height="20"
+            ></iconify-icon>
+          </button>
+        </form>
+        <div class="mic-logo">
+          <iconify-icon
+            icon="material-symbols:mic"
+            width="25"
+            height="23"
+          ></iconify-icon>
+        </div>
+      </section>
+      <section class="right-nav-item">
+        <div class="setting-menu">
+          <iconify-icon
+            icon="ri:more-2-fill"
+            width="20"
+            height="20"
+          ></iconify-icon>
+        </div>
+        <a href="/login">
+          <div class="signin-button">
+            <div class="signin-logo">
+              <iconify-icon
+                icon="ph:user-circle-thin"
+                width="27"
+                height="27"
+                style="color: blue"
+              ></iconify-icon>
+            </div>
+            <p><%= name %></p>
+          </div>
+        </a>
+        <!-- <div class="create-video">
+          <iconify-icon
+            icon="carbon:video-add"
+            width="25"
+            height="25"
+          ></iconify-icon>
+        </div>
+        <div class="notification">
+          <iconify-icon
+            icon="ic:outline-notifications"
+            width="25"
+            height="25"
+          ></iconify-icon>
+        </div>
+        <div class="user-profile"></div> -->
+      </section>
+    </nav>
+    <section class="list-menu">
+      <ul>
+        <li>
+          <a href="">
+            <div class="home-menu">
+              <iconify-icon
+                icon="material-symbols:home"
+                width="25"
+                height="25"
+              ></iconify-icon>
+              <p>Home</p>
+            </div>
+          </a>
+        </li>
+        <li>
+          <a href="">
+            <div class="subscription-menu">
+              <iconify-icon
+                icon="material-symbols:subscriptions-outline-sharp"
+                width="25"
+                height="25"
+              ></iconify-icon>
+              <p>Subscriptions</p>
+            </div>
+          </a>
+        </li>
+        <li>
+          <a href="">
+            <div class="library-menu">
+              <iconify-icon
+                icon="material-symbols:video-library-outline-sharp"
+                width="25"
+                height="25"
+              ></iconify-icon>
+              <p>Library</p>
+            </div>
+          </a>
+        </li>
+        <li>
+          <a href="">
+            <div class="history-menu">
+              <iconify-icon
+                icon="icon-park-outline:history"
+                width="25"
+                height="25"
+              ></iconify-icon>
+              <p>History</p>
+            </div>
+          </a>
+        </li>
+      </ul>
+    </section>
 
     <script src="https://code.iconify.design/iconify-icon/1.0.7/iconify-icon.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz" crossorigin="anonymous"></script>
-</body>
+  </body>
 </html>

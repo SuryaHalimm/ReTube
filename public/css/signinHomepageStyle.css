@@ -254,6 +254,24 @@ nav section {
 
 .list-menu {
   width: 70px;
+  border: 1px solid black;
+}
+
+.container {
+  margin: auto;
+  background-color: #eaeaea;
+  width: 500px;
+  height: 500px;
+  border-radius: 10px;
+}
+
+.container form {
+  margin: auto;
+  background-color: aqua;
+}
+
+.container-list-items {
+  display: flex;
 }
 
 @media only screen and (max-width: 992px) {

@@ -6,21 +6,25 @@ const cookieParser = require('cookie-parser');
 require('dotenv').config();
 const app = express();
 
+// mongoose.connect(
+//     'mongodb+srv://kelvin:tugasyoutube@Cluster0.mx0hj2d.mongodb.net/kaep-mongo?retryWrites=true&w=majority'
+// )
+
 mongoose.connect(
-    'mongodb+srv://kelvin:tugasyoutube@Cluster0.mx0hj2d.mongodb.net/kaep-mongo?retryWrites=true&w=majority'
-)
+  'mongodb://kelvin:tugasyoutube@ac-0ulw6so-shard-00-00.mx0hj2d.mongodb.net:27017,ac-0ulw6so-shard-00-01.mx0hj2d.mongodb.net:27017,ac-0ulw6so-shard-00-02.mx0hj2d.mongodb.net:27017/kaep-mongo?ssl=true&replicaSet=atlas-5wwoye-shard-0&authSource=admin&retryWrites=true&w=majority'
+);
 
 const db = mongoose.connection;
 db.on('error', (err) => {
-    console.log(err.message)
+  console.log(err.message);
 });
 db.once('open', () => {
-    console.log('You are Connected to MongoDB server');
+  console.log('You are Connected to MongoDB server');
 });
 
 app.use(express());
 app.use(cookieParser());
-app.use(express.urlencoded({extended: false}));
+app.use(express.urlencoded({ extended: false }));
 app.use(express.static('public'));
 app.use(cors());
 
@@ -28,9 +32,9 @@ app.set('view engine', 'ejs');
 app.use(route);
 
 app.listen(process.env.PORT, (err) => {
-    if (err) {
-        console.log(err.message);
-    } else {
-        console.log(`Server started at PORT ${process.env.PORT}`);
-    }
+  if (err) {
+    console.log(err.message);
+  } else {
+    console.log(`Server started at PORT ${process.env.PORT}`);
+  }
 });

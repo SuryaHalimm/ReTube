@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="./css/signinHomepageStyle.css" />
+    <title>Youtube</title>
+  </head>
+  <%- include('../partials/header')%>
+  <div class="container-list-items">
+    <section class="list-menu">
+      <ul>
+        <li>
+          <a href="">
+            <div class="home-menu">
+              <iconify-icon
+                icon="material-symbols:home"
+                width="25"
+                height="25"
+              ></iconify-icon>
+              <p>Home</p>
+            </div>
+          </a>
+        </li>
+        <li>
+          <a href="">
+            <div class="subscription-menu">
+              <iconify-icon
+                icon="material-symbols:subscriptions-outline-sharp"
+                width="25"
+                height="25"
+              ></iconify-icon>
+              <p>Subscriptions</p>
+            </div>
+          </a>
+        </li>
+        <li>
+          <a href="">
+            <div class="library-menu">
+              <iconify-icon
+                icon="material-symbols:video-library-outline-sharp"
+                width="25"
+                height="25"
+              ></iconify-icon>
+              <p>Library</p>
+            </div>
+          </a>
+        </li>
+        <li>
+          <a href="">
+            <div class="history-menu">
+              <iconify-icon
+                icon="icon-park-outline:history"
+                width="25"
+                height="25"
+              ></iconify-icon>
+              <p>History</p>
+            </div>
+          </a>
+        </li>
+      </ul>
+    </section>
+    <div class="container-upload-form">
+      <form action="/upload" method="post">
+        <div class="title-form">
+          <label for="title">Title</label>
+          <input type="text" name="title" id="title" />
+        </div>
+        <div class="video-form">
+          <label for="fileVideo">Choose Video</label>
+          <input type="file" name="fileVideo" id="fileVideo" />
+        </div>
+        <div class="description-form">
+          <label for="description">Description</label>
+          <input type="text" name="description" id="description" />
+        </div>
+        <div class="thumbnail-form">
+          <label for="thumbnail">Thumbnail</label>
+          <input type="file" name="thumbnail" id="thumbnail" />
+        </div>
+        <button>Submit</button>
+      </form>
+    </div>
+  </div>
+
+  <script src="https://code.iconify.design/iconify-icon/1.0.7/iconify-icon.min.js"></script>
+  <%- include('../partials/footer') %>
+</html>

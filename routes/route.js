@@ -1,33 +1,36 @@
 const express = require('express');
 
-const userController = require('../controller/userController');
-const { login, register } = require('../controller/userController');
+const { login, register, upload } = require('../controller/userController');
 const { authenticateToken } = require('../validator/auth');
 const router = express();
 
 router.get('/', (req, res) => {
-    res.render('pages/homepageSignIn');
+  res.render('pages/homepage');
 });
 
 router.get('/index', authenticateToken, (req, res) => {
-    res.render('pages/index', {name: req.user.username})
+  res.render('pages/index', { name: req.user.username });
 });
 
 router.get('/SignUp', (req, res) => {
-    res.render('pages/SignUp');
+  res.render('pages/SignUp');
 });
 
-router.get('/login',(req, res) => {
-    res.render('pages/login');
+router.get('/login', (req, res) => {
+  res.render('pages/login');
 });
+
+router.get('/upload', authenticateToken, (req, res) => {
+  res.render('pages/upload', { name: req.user.username });
+});
+
+router.post('/upload', authenticateToken, upload);
 
 router.post('/login', login);
 
-
 router.post('/SignUp', register);
 
-
-// router.post('/login', 
+// router.post('/login',
 //     celebrate(authValidator.login),
 //     async(req, res, next) =>{
 //     try {
@@ -44,7 +47,7 @@ router.post('/SignUp', register);
 //       } catch (err) {
 //         return next(err);
 //       }
-    
+
 // });
 
 module.exports = router;

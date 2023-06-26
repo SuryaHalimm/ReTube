@@ -6,136 +6,60 @@
     <link rel="stylesheet" href="./css/signinHomepageStyle.css" />
     <title>Youtube</title>
   </head>
-  <body>
-    <nav>
-      <section class="left-nav-item">
-        <div class="hamburger-menu">
-          <iconify-icon icon="clarity:menu-line"></iconify-icon>
-        </div>
-        <a href="#" class="home">
-          <div id="youtube">
-            <div class="icon">
-              <iconify-icon
-                icon="entypo-social:youtube"
-                style="color: red"
-                width="30"
-                height="30"
-              ></iconify-icon>
-              <p>Youtube<sup>ID</sup></p>
-            </div>
-          </div>
-        </a>
-      </section>
-      <section class="searchbar">
-        <form action="POST">
-          <input type="text" placeholder="Search" />
-          <button type="submit">
+  <%- include('../partials/header')%>
+  <section class="list-menu">
+    <ul>
+      <li>
+        <a href="">
+          <div class="home-menu">
             <iconify-icon
-              icon="carbon:search"
-              width="20"
-              height="20"
+              icon="material-symbols:home"
+              width="25"
+              height="25"
             ></iconify-icon>
-          </button>
-        </form>
-        <div class="mic-logo">
-          <iconify-icon
-            icon="material-symbols:mic"
-            width="25"
-            height="23"
-          ></iconify-icon>
-        </div>
-      </section>
-      <section class="right-nav-item">
-        <div class="setting-menu">
-          <iconify-icon
-            icon="ri:more-2-fill"
-            width="20"
-            height="20"
-          ></iconify-icon>
-        </div>
-        <a href="/login">
-          <div class="signin-button">
-            <div class="signin-logo">
-              <iconify-icon
-                icon="ph:user-circle-thin"
-                width="27"
-                height="27"
-                style="color: blue"
-              ></iconify-icon>
-            </div>
-            <p><%= name %></p>
+            <p>Home</p>
           </div>
         </a>
-        <!-- <div class="create-video">
-          <iconify-icon
-            icon="carbon:video-add"
-            width="25"
-            height="25"
-          ></iconify-icon>
-        </div>
-        <div class="notification">
-          <iconify-icon
-            icon="ic:outline-notifications"
-            width="25"
-            height="25"
-          ></iconify-icon>
-        </div>
-        <div class="user-profile"></div> -->
-      </section>
-    </nav>
-    <section class="list-menu">
-      <ul>
-        <li>
-          <a href="">
-            <div class="home-menu">
-              <iconify-icon
-                icon="material-symbols:home"
-                width="25"
-                height="25"
-              ></iconify-icon>
-              <p>Home</p>
-            </div>
-          </a>
-        </li>
-        <li>
-          <a href="">
-            <div class="subscription-menu">
-              <iconify-icon
-                icon="material-symbols:subscriptions-outline-sharp"
-                width="25"
-                height="25"
-              ></iconify-icon>
-              <p>Subscriptions</p>
-            </div>
-          </a>
-        </li>
-        <li>
-          <a href="">
-            <div class="library-menu">
-              <iconify-icon
-                icon="material-symbols:video-library-outline-sharp"
-                width="25"
-                height="25"
-              ></iconify-icon>
-              <p>Library</p>
-            </div>
-          </a>
-        </li>
-        <li>
-          <a href="">
-            <div class="history-menu">
-              <iconify-icon
-                icon="icon-park-outline:history"
-                width="25"
-                height="25"
-              ></iconify-icon>
-              <p>History</p>
-            </div>
-          </a>
-        </li>
-      </ul>
-    </section>
+      </li>
+      <li>
+        <a href="">
+          <div class="subscription-menu">
+            <iconify-icon
+              icon="material-symbols:subscriptions-outline-sharp"
+              width="25"
+              height="25"
+            ></iconify-icon>
+            <p>Subscriptions</p>
+          </div>
+        </a>
+      </li>
+      <li>
+        <a href="">
+          <div class="library-menu">
+            <iconify-icon
+              icon="material-symbols:video-library-outline-sharp"
+              width="25"
+              height="25"
+            ></iconify-icon>
+            <p>Library</p>
+          </div>
+        </a>
+      </li>
+      <li>
+        <a href="">
+          <div class="history-menu">
+            <iconify-icon
+              icon="icon-park-outline:history"
+              width="25"
+              height="25"
+            ></iconify-icon>
+            <p>History</p>
+          </div>
+        </a>
+      </li>
+    </ul>
+  </section>
 
-    <script src="https://code.iconify.design/iconify-icon/1.0.7/iconify-icon.min.js"></script>
-  </body>
+  <script src="https://code.iconify.design/iconify-icon/1.0.7/iconify-icon.min.js"></script>
+  <%- include('../partials/footer') %>
 </html>

@@ -256,6 +256,32 @@ nav section {
   width: 70px;
 }
 
+.container-upload-form {
+  margin: auto;
+  background-color: #eaeaea;
+  width: 500px;
+  height: 500px;
+  border-radius: 10px;
+}
+
+.container-upload-form form {
+  display: flex;
+  width: inherit;
+  height: inherit;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+}
+
+.container-list-items form div {
+  display: flex;
+  flex-direction: column;
+}
+
+.container-list-items {
+  display: flex;
+}
+
 @media only screen and (max-width: 992px) {
   .searchbar form input {
     width: 100% !important;

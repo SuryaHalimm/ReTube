@@ -1,53 +1,81 @@
 require('dotenv').config();
 const User = require('../models/user');
-const { hashPassword, comparePassword } =  require('../helpers/crypto');
-const { celebrate } = require('celebrate')
+const videoSchema = require('../models/video');
+const { hashPassword, comparePassword } = require('../helpers/crypto');
+const { celebrate } = require('celebrate');
 const jwt = require('jsonwebtoken');
-const authValidator = require('../validator/auth');
+// const authValidator = require('../validator/auth');
 
-const register = async(req, res) => {
-  const {user_name, email, password} = req.body;
+const register = async (req, res) => {
+  const { user_name, email, password, createdAt, videos } = req.body;
   const hashedPassword = await hashPassword(password);
-  try{
+  try {
     const newUser = new User({
       username: user_name,
       email: email,
       password: hashedPassword,
+      createdAt,
+      videos: videos,
     });
     console.log(newUser);
-    res.redirect('/login')
-  return newUser.save();
+    res.redirect('/login');
+    return newUser.save();
   } catch (err) {
-    console.log(err.message)
+    console.log(err.message);
   }
-}
+};
 
 async function findByEmail(email) {
   return User.findOne({ email }).exec();
 }
 
-const login = async(req, res) => {
-  const {email, password} = req.body;
-  try{
-    const user = await User.findOne({email: email}).exec();
+const login = async (req, res) => {
+  const { email, password } = req.body;
+  try {
+    const user = await User.findOne({ email: email }).exec();
     if (!user) {
       return res.redirect('/login');
-    } 
+    }
     const passwordMatched = await comparePassword(password, user.password);
-    if(!passwordMatched){
-      return res.redirect('/login');
+    if (!passwordMatched) {
+      return res.status(404).redirect('/login');
     }
 
     const accessToken = jwt.sign(user.toJSON(), process.env.ACCESS_TOKEN_KEY);
     res.cookie('accessToken', accessToken, { httpOnly: true });
     res.redirect('/index');
-
   } catch (err) {
-    console.log(err.message)
+    console.log(err.message);
   }
 };
 
+const upload = async (req, res) => {
+  const { title, fileVideo, description, thumbnail, uploadAt } = req.body;
+  try {
+    if (!req.user) {
+      return res.redirect('/login');
+    }
+    const userWithVideo = new videoSchema({
+      title,
+      fileVideo,
+      description,
+      thumbnail,
+      uploadAt,
+    });
 
+    const user = await User.findOneAndUpdate(
+      { email: req.user.email },
+      { $push: { videos: userWithVideo } },
+      { new: true }
+    );
+
+    console.log(user);
+    res.status(200).json({ user: user });
+    return userWithVideo.save();
+  } catch (err) {
+    console.log(err.message);
+  }
+};
 async function findByName(name) {
   return User.findByName(name);
 }
@@ -56,6 +84,12 @@ module.exports = {
   register,
   findByEmail,
   login,
+<<<<<<< HEAD
   findByName
 }
 //tes
+=======
+  findByName,
+  upload,
+};
+>>>>>>> sur-tes

@@ -1,14 +1,36 @@
 const mongoose = require('mongoose');
 
+const videoSchema = mongoose.Schema({
+  title: {
+    type: String,
+    required: true,
+  },
+  fileVideo: {
+    type: String,
+    required: true,
+  },
+  description: {
+    type: String,
+    required: true,
+  },
+  uploadAt: {
+    type: Date,
+    default: Date.now,
+  },
+});
+
 const schema = mongoose.Schema({
   username: {
     type: String,
+    required: true,
   },
   email: {
     type: String,
+    required: true,
   },
   password: {
     type: String,
+    required: true,
   },
   re_password: {
     type: String,
@@ -17,10 +39,7 @@ const schema = mongoose.Schema({
     type: Date,
     default: Date.now,
   },
-  videos: {
-    type: mongoose.Schema.ObjectId,
-    ref: 'Video',
-  },
+  videos: [videoSchema],
 });
 
 module.exports = mongoose.model('User', schema);

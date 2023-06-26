@@ -256,7 +256,7 @@ nav section {
   width: 70px;
 }
 
-.container {
+.container-upload-form {
   margin: auto;
   background-color: #eaeaea;
   width: 500px;
@@ -264,8 +264,18 @@ nav section {
   border-radius: 10px;
 }
 
-.container form {
-  margin: auto;
+.container-upload-form form {
+  display: flex;
+  width: inherit;
+  height: inherit;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+}
+
+.container-list-items form div {
+  display: flex;
+  flex-direction: column;
 }
 
 .container-list-items {

@@ -3,7 +3,7 @@ const User = require('../models/user');
 const { hashPassword, comparePassword } = require('../helpers/crypto');
 const { celebrate } = require('celebrate');
 const jwt = require('jsonwebtoken');
-const authValidator = require('../validator/auth');
+// const authValidator = require('../validator/auth');
 
 const register = async (req, res) => {
   const { user_name, email, password, createdAt } = req.body;
@@ -47,6 +47,27 @@ const login = async (req, res) => {
   }
 };
 
+const upload = async (req, res) => {
+  const { title, fileVideo, description, thumbnail } = req.body;
+  const { email } = req.user;
+  try {
+    const user = await User.findOne({ email: email }).exec;
+    if (!user) {
+      return res.redirect('/upload');
+    }
+    user.videos = {
+      title: title,
+      fileVideo: fileVideo,
+      description: description,
+      thumbnail: thumbnail,
+    };
+
+    console.log(user.videos);
+    res.status(200).json({ message: 'berhasil menyimpan' });
+  } catch (err) {
+    console.log(err.message);
+  }
+};
 async function findByName(name) {
   return User.findByName(name);
 }
@@ -56,4 +77,5 @@ module.exports = {
   findByEmail,
   login,
   findByName,
+  upload,
 };

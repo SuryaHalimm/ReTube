@@ -13,6 +13,14 @@ const schema = mongoose.Schema({
   re_password: {
     type: String,
   },
+  createdAt: {
+    type: Date,
+    default: Date.now,
+  },
+  videos: {
+    type: mongoose.Schema.ObjectId,
+    ref: 'Video',
+  },
 });
 
 module.exports = mongoose.model('User', schema);

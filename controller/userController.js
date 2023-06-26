@@ -84,12 +84,6 @@ module.exports = {
   register,
   findByEmail,
   login,
-<<<<<<< HEAD
-  findByName
-}
-//tes
-=======
   findByName,
   upload,
 };
->>>>>>> sur-tes

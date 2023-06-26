@@ -1,12 +1,13 @@
 require('dotenv').config();
 const User = require('../models/user');
+const videoSchema = require('../models/video');
 const { hashPassword, comparePassword } = require('../helpers/crypto');
 const { celebrate } = require('celebrate');
 const jwt = require('jsonwebtoken');
 // const authValidator = require('../validator/auth');
 
 const register = async (req, res) => {
-  const { user_name, email, password, createdAt } = req.body;
+  const { user_name, email, password, createdAt, videos } = req.body;
   const hashedPassword = await hashPassword(password);
   try {
     const newUser = new User({
@@ -14,6 +15,7 @@ const register = async (req, res) => {
       email: email,
       password: hashedPassword,
       createdAt,
+      videos: videos,
     });
     console.log(newUser);
     res.redirect('/login');
@@ -36,7 +38,7 @@ const login = async (req, res) => {
     }
     const passwordMatched = await comparePassword(password, user.password);
     if (!passwordMatched) {
-      return res.redirect('/login');
+      return res.status(404).redirect('/login');
     }
 
     const accessToken = jwt.sign(user.toJSON(), process.env.ACCESS_TOKEN_KEY);
@@ -48,22 +50,28 @@ const login = async (req, res) => {
 };
 
 const upload = async (req, res) => {
-  const { title, fileVideo, description, thumbnail } = req.body;
-  const { email } = req.user;
+  const { title, fileVideo, description, thumbnail, uploadAt } = req.body;
   try {
-    const user = await User.findOne({ email: email }).exec;
-    if (!user) {
-      return res.redirect('/upload');
+    if (!req.user) {
+      return res.redirect('/login');
     }
-    user.videos = {
-      title: title,
-      fileVideo: fileVideo,
-      description: description,
-      thumbnail: thumbnail,
-    };
+    const userWithVideo = new videoSchema({
+      title,
+      fileVideo,
+      description,
+      thumbnail,
+      uploadAt,
+    });
 
-    console.log(user.videos);
-    res.status(200).json({ message: 'berhasil menyimpan' });
+    const user = await User.findOneAndUpdate(
+      { email: req.user.email },
+      { $push: { videos: userWithVideo } },
+      { new: true }
+    );
+
+    console.log(user);
+    res.status(200).json({ user: user });
+    return userWithVideo.save();
   } catch (err) {
     console.log(err.message);
   }

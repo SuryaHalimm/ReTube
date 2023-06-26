@@ -1,24 +1,5 @@
 const mongoose = require('mongoose');
 
-const videoSchema = mongoose.Schema({
-  title: {
-    type: String,
-    required: true,
-  },
-  fileVideo: {
-    type: String,
-    required: true,
-  },
-  description: {
-    type: String,
-    required: true,
-  },
-  uploadAt: {
-    type: Date,
-    default: Date.now,
-  },
-});
-
 const schema = mongoose.Schema({
   username: {
     type: String,
@@ -39,7 +20,7 @@ const schema = mongoose.Schema({
     type: Date,
     default: Date.now,
   },
-  videos: [videoSchema],
+  videos: [{ type: mongoose.Schema.ObjectId, ref: 'videoSchema' }],
 });
 
 module.exports = mongoose.model('User', schema);

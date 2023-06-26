@@ -254,7 +254,6 @@ nav section {
 
 .list-menu {
   width: 70px;
-  border: 1px solid black;
 }
 
 .container {
@@ -267,7 +266,6 @@ nav section {
 
 .container form {
   margin: auto;
-  background-color: aqua;
 }
 
 .container-list-items {

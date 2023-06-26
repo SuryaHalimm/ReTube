@@ -7,7 +7,7 @@ require('dotenv').config();
 const app = express();
 
 mongoose.connect(
-    'mongodb+srv://kelvin:tugasyoutube@Cluster0.mx0hj2d.mongodb.net/kaep-mongo?retryWrites=true&w=majority'
+   'mongodb://kelvin:tugasyoutube@ac-0ulw6so-shard-00-00.mx0hj2d.mongodb.net:27017,ac-0ulw6so-shard-00-01.mx0hj2d.mongodb.net:27017,ac-0ulw6so-shard-00-02.mx0hj2d.mongodb.net:27017/kaep-mongo?ssl=true&replicaSet=atlas-5wwoye-shard-0&authSource=admin&retryWrites=true&w=majority'
 )
 
 const db = mongoose.connection;

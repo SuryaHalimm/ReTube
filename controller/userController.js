@@ -76,6 +76,11 @@ const upload = async (req, res) => {
     console.log(err.message);
   }
 };
+
+const logout = (req, res) => {
+  res.cookie('access-token', '', { maxAge: 1 });
+  res.redirect('/');
+};
 async function findByName(name) {
   return User.findByName(name);
 }
@@ -86,4 +91,5 @@ module.exports = {
   login,
   findByName,
   upload,
+  logout,
 };

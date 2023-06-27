@@ -1,6 +1,11 @@
 const express = require('express');
 
-const { login, register, upload } = require('../controller/userController');
+const {
+  login,
+  register,
+  upload,
+  logout,
+} = require('../controller/userController');
 const { authenticateToken } = require('../validator/auth');
 const router = express();
 
@@ -19,6 +24,8 @@ router.get('/SignUp', (req, res) => {
 router.get('/login', (req, res) => {
   res.render('pages/login');
 });
+
+router.get('/logout', logout);
 
 router.get('/upload', authenticateToken, (req, res) => {
   res.render('pages/upload', { name: req.user.username });

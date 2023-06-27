@@ -211,6 +211,13 @@ nav section {
   color: blue;
 }
 
+.logout {
+  margin-left: 30px;
+}
+.logout a {
+  font-size: 18px;
+}
+
 .list-menu ul li {
   display: flex;
   flex-direction: column;

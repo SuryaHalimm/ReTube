@@ -2,7 +2,6 @@ require('dotenv').config();
 const User = require('../models/user');
 const videoSchema = require('../models/video');
 const { hashPassword, comparePassword } = require('../helpers/crypto');
-const { celebrate } = require('celebrate');
 const jwt = require('jsonwebtoken');
 // const authValidator = require('../validator/auth');
 
@@ -77,6 +76,21 @@ const upload = async (req, res) => {
   }
 };
 
+const getVideo = async (req, res) => {
+  const user = await User.findOne({ email: req.user.email });
+
+  try {
+    let videoPosted = [];
+    for (const videoId of user.videos) {
+      const videoDetail = await videoSchema.findOne({ _id: videoId }).exec();
+      videoPosted.push(videoDetail);
+    }
+    res.status(200).json({ videoPosted });
+  } catch (err) {
+    console.log(err.message);
+  }
+};
+
 const logout = (req, res) => {
   res.cookie('access-token', '', { maxAge: 1 });
   res.redirect('/');
@@ -92,4 +106,5 @@ module.exports = {
   findByName,
   upload,
   logout,
+  getVideo,
 };

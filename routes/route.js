@@ -5,6 +5,7 @@ const {
   register,
   upload,
   logout,
+  getVideo,
 } = require('../controller/userController');
 const { authenticateToken } = require('../validator/auth');
 const router = express();
@@ -30,6 +31,8 @@ router.get('/logout', logout);
 router.get('/upload', authenticateToken, (req, res) => {
   res.render('pages/upload', { user: req.user });
 });
+
+router.get('/getVideo', authenticateToken, getVideo);
 
 router.post('/upload', authenticateToken, upload);
 

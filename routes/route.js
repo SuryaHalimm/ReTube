@@ -14,7 +14,7 @@ router.get('/', (req, res) => {
 });
 
 router.get('/index', authenticateToken, (req, res) => {
-  res.render('pages/index', { name: req.user.username });
+  res.render('pages/index', { user: req.user });
 });
 
 router.get('/SignUp', (req, res) => {
@@ -28,7 +28,7 @@ router.get('/login', (req, res) => {
 router.get('/logout', logout);
 
 router.get('/upload', authenticateToken, (req, res) => {
-  res.render('pages/upload', { name: req.user.username });
+  res.render('pages/upload', { user: req.user });
 });
 
 router.post('/upload', authenticateToken, upload);

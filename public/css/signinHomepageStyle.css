@@ -316,7 +316,8 @@ nav section {
 .video-container .fileVideo {
   border-radius: 20px 20px 20px 20px;
   height: 60%;
-  background-color: rgb(47, 47, 47);
+  background-image: url('https://cms.hybrid.co.id/wp-content/uploads/2019/07/cc2b7d627bbabd4385f0fe251f577770_Membuat-thumbnail-Youtube-yang-Keren.png');
+  background-size: cover;
 }
 
 .video-container .video-info {

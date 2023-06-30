@@ -1,136 +1,163 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <link rel="stylesheet" href="./css/signupstyle.css">
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css">
-  <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100;0,200;0,400;1,200&display=swap" rel="stylesheet">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Document</title>
-</head>
-<body>
-  <div id="signin" class="container">
-    <div class="title">Sign-In!</div>
-    <form action="/login" method="post">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="stylesheet" href="./css/signupstyle.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100;0,200;0,400;1,200&display=swap"
+      rel="stylesheet"
+    />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <div id="signin" class="container">
+      <div class="title">Sign-In!</div>
+      <form action="/login" method="post">
         <div class="user-details">
-            <div class="input-box">
-                <span class="details">Email</span>
-                <input type="text" placeholder="Enter your email" required name="email">
-            </div>
-            <div class="input-box" style="position: relative">
-                <span class="details">Password</span>
-                <input type="password" id="pW" placeholder="Enter your password" required name="password">
-                <i class="fa fa-eye-slash show-pass" style="position: absolute; top: 44.5%; left: 90%"></i>
-                <small>Forgotten your password?<a href="/forgotpw" style="margin-left: 5px">Click here!</a></small>
-            </div>
+          <div class="input-box">
+            <span class="details">Email</span>
+            <input
+              type="text"
+              placeholder="Enter your email"
+              required
+              name="email"
+            />
+          </div>
+          <div class="input-box" style="position: relative">
+            <span class="details">Password</span>
+            <input
+              type="password"
+              id="pW"
+              placeholder="Enter your password"
+              required
+              name="password"
+            />
+            <i
+              class="fa fa-eye-slash show-pass"
+              style="position: absolute; top: 44.5%; left: 90%"
+            ></i>
+            <small
+              >Forgotten your password?<a
+                href="/forgotpw"
+                style="margin-left: 5px"
+                >Click here!</a
+              ></small
+            >
+          </div>
         </div>
         <div class="button">
-            <input type="submit" value="Log In">
+          <input type="submit" value="Log In" />
         </div>
-    </form>
-    <button onclick="changeContainer()">Sign Up</button>
+      </form>
+      <a href="/signup">
+        <button onclick="changeContainer()">Sign Up</button>
+      </a>
 
-    <script>
+      <script>
+        const showPassword = document.querySelector('.show-password'),
+          showPass = document.querySelector('.show-pass'),
+          createPw = document.querySelector('#createPw'),
+          confirmPw = document.querySelector('#confirmPw'),
+          pW = document.querySelector('#pW'),
+          name = document.querySelector('.name'),
+          userName = document.querySelector('.username'),
+          eMail = document.querySelector('.email'),
+          number = document.querySelector('.no'),
+          message = document.querySelector('#errorPw');
 
-      const showPassword = document.querySelector(".show-password"),
-          showPass = document.querySelector(".show-pass"),
-          createPw = document.querySelector("#createPw"),
-          confirmPw = document.querySelector("#confirmPw"),
-          pW = document.querySelector("#pW"),
-          name = document.querySelector(".name"),
-          userName = document.querySelector(".username"),
-          eMail = document.querySelector(".email"),
-          number = document.querySelector(".no"),
-          message = document.querySelector("#errorPw");
+        function clear() {
+          document.getElementById('signup').reset();
+        }
 
-      function clear() {
-          document.getElementById("signup").reset();
-      }
-
-      function emailValidation() {
-          var form = document.getElementById("form");
-          var email = document.getElementById("email").value;
+        function emailValidation() {
+          var form = document.getElementById('form');
+          var email = document.getElementById('email').value;
           var pattern = /^[^ ]+@[^ ]+\.[a-z]{2,3}$/;
 
           if (email.match(pattern)) {
-              form.classList.add("valid");
-              form.classList.remove("invalid");
-              text.innerHTML = "Your email address is valid."
-              text.style.color = "#00ff00";
-          }
-          else {
-              form.classList.remove("valid");
-              form.classList.add("invalid");
-              text.innerHTML = "Your email address is invalid."
-              text.style.color = "#ff0000";
-          }
-          if (email == "") {
-              form.classList.remove("valid");
-              form.classList.remove("invalid");
-              text.innerHTML = "";
-              text.style.color = "#00ff00";
-          }
-      }
-
-      /* Password Validation */
-      confirmPw.addEventListener("input", () => {
-          if (confirmPw.value != createPw.value) {
-              message.textContent = "Passwords don't match!";
-              message.style.color = "ff4d4d";
-              document.querySelector("#signupbutton").setAttribute("disabled", true)
+            form.classList.add('valid');
+            form.classList.remove('invalid');
+            text.innerHTML = 'Your email address is valid.';
+            text.style.color = '#00ff00';
           } else {
-              message.textContent = "";
-              document.querySelector("#signupbutton").removeAttribute("disabled")
+            form.classList.remove('valid');
+            form.classList.add('invalid');
+            text.innerHTML = 'Your email address is invalid.';
+            text.style.color = '#ff0000';
           }
-      })
+          if (email == '') {
+            form.classList.remove('valid');
+            form.classList.remove('invalid');
+            text.innerHTML = '';
+            text.style.color = '#00ff00';
+          }
+        }
 
-      createPw.addEventListener("input", () => {
+        /* Password Validation */
+        confirmPw.addEventListener('input', () => {
           if (confirmPw.value != createPw.value) {
-              message.textContent = "Passwords don't match!";
-              message.style.color = "ff4d4d";
-              document.querySelector("#signupbutton").setAttribute("disabled", true)
+            message.textContent = "Passwords don't match!";
+            message.style.color = 'ff4d4d';
+            document
+              .querySelector('#signupbutton')
+              .setAttribute('disabled', true);
           } else {
-              message.textContent = "";
-              document.querySelector("#signupbutton").removeAttribute("disabled")
+            message.textContent = '';
+            document.querySelector('#signupbutton').removeAttribute('disabled');
           }
-      })
+        });
 
-      /* Reveals and hides password by clicking on the eye icon */
-      showPass.addEventListener("click", () => {
-          if (pW.type === "password") {
-              pW.type = "text";
-              showPass.classList.replace("fa-eye-slash", "fa-eye");
+        createPw.addEventListener('input', () => {
+          if (confirmPw.value != createPw.value) {
+            message.textContent = "Passwords don't match!";
+            message.style.color = 'ff4d4d';
+            document
+              .querySelector('#signupbutton')
+              .setAttribute('disabled', true);
+          } else {
+            message.textContent = '';
+            document.querySelector('#signupbutton').removeAttribute('disabled');
           }
-          else {
-              pW.type = "password";
-              showPass.classList.replace("fa-eye", "fa-eye-slash");
-          }
-      });
+        });
 
-      showPassword.addEventListener("click", () => {
-          if ((createPw.type === "password") && (confirmPw.type === "password")) {
-              createPw.type = "text";
-              confirmPw.type = "text";
-              showPassword.classList.replace("fa-eye-slash", "fa-eye");
+        /* Reveals and hides password by clicking on the eye icon */
+        showPass.addEventListener('click', () => {
+          if (pW.type === 'password') {
+            pW.type = 'text';
+            showPass.classList.replace('fa-eye-slash', 'fa-eye');
+          } else {
+            pW.type = 'password';
+            showPass.classList.replace('fa-eye', 'fa-eye-slash');
           }
-          else {
-              createPw.type = "password";
-              confirmPw.type = "password";
-              showPassword.classList.replace("fa-eye", "fa-eye-slash");
+        });
+
+        showPassword.addEventListener('click', () => {
+          if (createPw.type === 'password' && confirmPw.type === 'password') {
+            createPw.type = 'text';
+            confirmPw.type = 'text';
+            showPassword.classList.replace('fa-eye-slash', 'fa-eye');
+          } else {
+            createPw.type = 'password';
+            confirmPw.type = 'password';
+            showPassword.classList.replace('fa-eye', 'fa-eye-slash');
           }
-      });
+        });
 
-      /* Swaps both containers when Sign Up or Log In button is clicked */
-      const signup = document.getElementById('signup')
-      const signin = document.getElementById('signin')
-      const changeContainer = () => {
-          signup.classList.toggle('close')
-          signin.classList.toggle('close')
-      }
-
-  </script>
-</div>
-</body>
+        /* Swaps both containers when Sign Up or Log In button is clicked */
+        const signup = document.getElementById('signup');
+        const signin = document.getElementById('signin');
+        const changeContainer = () => {
+          signup.classList.toggle('close');
+          signin.classList.toggle('close');
+        };
+      </script>
+    </div>
+  </body>
 </html>

@@ -9,7 +9,7 @@ const takeVideo = async () => {
     data.videoPosted.forEach((video) => {
       userVideo += `
                     <div class="video-container">
-                      <div class="fileVideo style="background-image: url('${video.thumbnail}')"></div>
+                      <div class="fileVideo"></div>
                       <div class="video-info">
                         <h3>${video.title}</h3>
                         <p>${video.description}</p>

@@ -91,6 +91,23 @@ const getVideo = async (req, res) => {
   }
 };
 
+const getDetailVideo = async (req, res) => {
+  try {
+    const videoId = req.params.videoId;
+    console.log(videoId);
+    const videoDetail = await videoSchema.findOne({ _id: videoId }).exec();
+
+    if (!videoDetail) {
+      return res
+        .status(404)
+        .json({ message: 'Detail Video dengan ID tidak ditemukan!' });
+    }
+    res.status(200).json({ videoDetail });
+  } catch (err) {
+    res.status(500).json({ message: 'terjadi kesalahan pada server' });
+  }
+};
+
 const logout = (req, res) => {
   res.cookie('access-token', '', { maxAge: 1 });
   res.redirect('/');
@@ -107,4 +124,5 @@ module.exports = {
   upload,
   logout,
   getVideo,
+  getDetailVideo,
 };

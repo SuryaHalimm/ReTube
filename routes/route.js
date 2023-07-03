@@ -39,6 +39,8 @@ router.get('/index/:videoId', authenticateToken, (req, res) => {
   res.render('pages/indexVideo', { user: req.user });
 });
 
+router.get('/getVideo/:videoId', authenticateToken, getDetailVideo);
+
 router.post('/upload', authenticateToken, upload);
 
 router.post('/login', login);

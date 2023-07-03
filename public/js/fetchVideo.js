@@ -6,10 +6,11 @@ const takeVideo = async () => {
     const data = await res.json();
     console.log(data);
     data.videoPosted.forEach((video) => {
+      console.log(video.thumbnail);
       const videoContainer = document.createElement('div');
       videoContainer.classList.add('video-container');
       videoContainer.innerHTML = `
-        <div class="fileVideo"></div>
+        <div class="fileVideo" style="background-image: url('/assets/${video.thumbnail}')"></div>
         <div class="video-info">
           <h3>${video.title}</h3>
           <p>${video.description}</p>

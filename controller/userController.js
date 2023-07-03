@@ -49,17 +49,16 @@ const login = async (req, res) => {
 };
 
 const upload = async (req, res) => {
-  const { title, fileVideo, description, thumbnail, uploadAt } = req.body;
   try {
     if (!req.user) {
       return res.redirect('/login');
     }
     const userWithVideo = new videoSchema({
-      title,
-      fileVideo,
-      description,
-      thumbnail,
-      uploadAt,
+      title: req.body.title,
+      fileVideo: req.files.fileVideo[0].filename,
+      description: req.body.description,
+      thumbnail: req.files.thumbnail[0].filename,
+      uploadAt: Date.now(),
     });
 
     const user = await User.findOneAndUpdate(

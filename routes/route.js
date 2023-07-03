@@ -8,7 +8,22 @@ const {
   getVideo,
   getDetailVideo,
 } = require('../controller/userController');
+const multer = require('multer');
 const { authenticateToken } = require('../validator/auth');
+const path = require('path');
+
+const storage = multer.diskStorage({
+  destination: function (req, file, cb) {
+    cb(null, './public/assets/');
+  },
+  filename: function (req, file, cb) {
+    console.log(file);
+    cb(null, Date.now() + path.extname(file.originalname));
+  },
+});
+
+const uploads = multer({ storage: storage });
+
 const router = express();
 
 router.get('/', (req, res) => {
@@ -41,7 +56,15 @@ router.get('/index/:videoId', authenticateToken, (req, res) => {
 
 router.get('/getVideo/:videoId', authenticateToken, getDetailVideo);
 
-router.post('/upload', authenticateToken, upload);
+router.post(
+  '/upload',
+  authenticateToken,
+  uploads.fields([
+    { name: 'thumbnail', maxCount: 1 },
+    { name: 'fileVideo', maxCount: 1 },
+  ]),
+  upload
+);
 
 router.post('/login', login);
 

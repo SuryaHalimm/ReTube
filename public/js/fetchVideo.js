@@ -18,7 +18,7 @@ const takeVideo = async () => {
       `;
       videoArea.appendChild(videoContainer);
       videoContainer.addEventListener('click', () => {
-        console.log(video._id);
+        location.assign(`/index/${video._id}`);
       });
     });
   } catch (error) {

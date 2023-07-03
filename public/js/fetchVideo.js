@@ -5,20 +5,22 @@ const takeVideo = async () => {
     const res = await fetch('/getvideo');
     const data = await res.json();
     console.log(data);
-    let userVideo = '';
     data.videoPosted.forEach((video) => {
-      userVideo += `
-                    <div class="video-container">
-                      <div class="fileVideo"></div>
-                      <div class="video-info">
-                        <h3>${video.title}</h3>
-                        <p>${video.description}</p>
-                        <p>${video.uploadAt}</p>
-                      </div>
-                    </div>
-                  `;
+      const videoContainer = document.createElement('div');
+      videoContainer.classList.add('video-container');
+      videoContainer.innerHTML = `
+        <div class="fileVideo"></div>
+        <div class="video-info">
+          <h3>${video.title}</h3>
+          <p>${video.description}</p>
+          <p>${video.uploadAt}</p>
+        </div>
+      `;
+      videoArea.appendChild(videoContainer);
+      videoContainer.addEventListener('click', () => {
+        console.log(video._id);
+      });
     });
-    videoArea.innerHTML = userVideo;
   } catch (error) {
     console.log(error);
   }

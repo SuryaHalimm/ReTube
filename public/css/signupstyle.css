@@ -11,7 +11,8 @@ body {
   justify-content: center;
   align-items: center;
   padding: 10px;
-  background: linear-gradient(155deg, #ff0a0a, #dddddd)
+  background:black;
+  /* background: linear-gradient(155deg, #ff0a0a, #dddddd) */
   /* background-image: url(../images/backgroundsign.png); */
 }
 
@@ -140,7 +141,7 @@ form .button input:hover {
 }
 
 .container button {
-  height: 6.5%;
+  height: 45px;
   width: 100%;
   outline: none;
   color: #fff;
@@ -155,7 +156,7 @@ form .button input:hover {
 
 .input-box small {
   color: rgb(226, 4, 4);
-  margin-left: 5px;
+  margin-left: 1px;
 }
 
 @media (max-width: 584px) {

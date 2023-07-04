@@ -266,8 +266,8 @@ nav section {
 .container-upload-form {
   margin: auto;
   background-color: #eaeaea;
-  width: 500px;
-  height: 500px;
+  width: 470px;
+  height: 470px;
   border-radius: 10px;
 }
 
@@ -277,7 +277,17 @@ nav section {
   height: inherit;
   flex-direction: column;
   justify-content: space-around;
-  align-items: center;
+  align-items:start;
+  margin-left:20px;
+}
+
+#subButton{
+  width: 20%;
+}
+
+#subButton:hover{
+  background:black;
+  color: white;
 }
 
 .container-list-items form div {

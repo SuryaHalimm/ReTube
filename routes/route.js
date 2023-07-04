@@ -14,7 +14,13 @@ const path = require('path');
 
 const storage = multer.diskStorage({
   destination: function (req, file, cb) {
-    cb(null, './public/assets/');
+    let folder = '';
+    if (file.mimetype.startsWith('image/')) {
+      folder = 'images/';
+    } else if (file.mimetype.startsWith('video/')) {
+      folder = 'videos/';
+    }
+    cb(null, './public/assets/' + folder);
   },
   filename: function (req, file, cb) {
     console.log(file);

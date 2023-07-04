@@ -10,7 +10,7 @@ const takeVideo = async () => {
       const videoContainer = document.createElement('div');
       videoContainer.classList.add('video-container');
       videoContainer.innerHTML = `
-        <div class="fileVideo" style="background-image: url('/assets/${video.thumbnail}')"></div>
+        <div class="fileVideo" style="background-image: url('/assets/images/${video.thumbnail}')"></div>
         <div class="video-info">
           <h3>${video.title}</h3>
           <p>${video.description}</p>

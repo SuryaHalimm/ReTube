@@ -20,7 +20,7 @@ const register = async (req, res) => {
     res.redirect('/login');
     return newUser.save();
   } catch (err) {
-    console.log(err.message);
+    res.status(500).json({ message: 'Server sedang sibuk' });
   }
 };
 
@@ -44,7 +44,7 @@ const login = async (req, res) => {
     res.cookie('accessToken', accessToken, { httpOnly: true });
     res.redirect('/index');
   } catch (err) {
-    console.log(err.message);
+    res.status(500).json({ message: 'Server sedang sibuk' });
   }
 };
 
@@ -71,7 +71,7 @@ const upload = async (req, res) => {
     res.status(200).json({ user: user });
     return userWithVideo.save();
   } catch (err) {
-    console.log(err.message);
+    res.status(500).json({ message: 'Server sedang sibuk' });
   }
 };
 
@@ -86,7 +86,7 @@ const getVideo = async (req, res) => {
     }
     res.status(200).json({ videoPosted });
   } catch (err) {
-    console.log(err.message);
+    res.status(500).json({ message: 'Server sedang sibuk' });
   }
 };
 

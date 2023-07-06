@@ -12,6 +12,9 @@ const videoSchema = mongoose.Schema({
     type: String,
     required: true,
   },
+  thumbnail: {
+    type: String,
+  },
   uploadAt: {
     type: Date,
     default: Date.now,

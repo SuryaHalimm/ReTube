@@ -14,7 +14,7 @@
       rel="stylesheet"
     />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Document</title>
+    <title>Sign-In!</title>
   </head>
   <body>
     <div id="signin" class="container">
@@ -45,7 +45,7 @@
             ></i>
             <small
               >Forgotten your password?<a
-                href="/forgotpw"
+                href="#"
                 style="margin-left: 5px"
                 >Click here!</a
               ></small
@@ -56,106 +56,12 @@
           <input type="submit" value="Log In" />
         </div>
       </form>
-      <button onclick="changeContainer()">Sign Up</button>
-
-      <script>
-        const showPassword = document.querySelector('.show-password'),
-          showPass = document.querySelector('.show-pass'),
-          createPw = document.querySelector('#createPw'),
-          confirmPw = document.querySelector('#confirmPw'),
-          pW = document.querySelector('#pW'),
-          name = document.querySelector('.name'),
-          userName = document.querySelector('.username'),
-          eMail = document.querySelector('.email'),
-          number = document.querySelector('.no'),
-          message = document.querySelector('#errorPw');
-
-        function clear() {
-          document.getElementById('signup').reset();
-        }
-
-        function emailValidation() {
-          var form = document.getElementById('form');
-          var email = document.getElementById('email').value;
-          var pattern = /^[^ ]+@[^ ]+\.[a-z]{2,3}$/;
-
-          if (email.match(pattern)) {
-            form.classList.add('valid');
-            form.classList.remove('invalid');
-            text.innerHTML = 'Your email address is valid.';
-            text.style.color = '#00ff00';
-          } else {
-            form.classList.remove('valid');
-            form.classList.add('invalid');
-            text.innerHTML = 'Your email address is invalid.';
-            text.style.color = '#ff0000';
-          }
-          if (email == '') {
-            form.classList.remove('valid');
-            form.classList.remove('invalid');
-            text.innerHTML = '';
-            text.style.color = '#00ff00';
-          }
-        }
-
-        /* Password Validation */
-        confirmPw.addEventListener('input', () => {
-          if (confirmPw.value != createPw.value) {
-            message.textContent = "Passwords don't match!";
-            message.style.color = 'ff4d4d';
-            document
-              .querySelector('#signupbutton')
-              .setAttribute('disabled', true);
-          } else {
-            message.textContent = '';
-            document.querySelector('#signupbutton').removeAttribute('disabled');
-          }
-        });
-
-        createPw.addEventListener('input', () => {
-          if (confirmPw.value != createPw.value) {
-            message.textContent = "Passwords don't match!";
-            message.style.color = 'ff4d4d';
-            document
-              .querySelector('#signupbutton')
-              .setAttribute('disabled', true);
-          } else {
-            message.textContent = '';
-            document.querySelector('#signupbutton').removeAttribute('disabled');
-          }
-        });
-
-        /* Reveals and hides password by clicking on the eye icon */
-        showPass.addEventListener('click', () => {
-          if (pW.type === 'password') {
-            pW.type = 'text';
-            showPass.classList.replace('fa-eye-slash', 'fa-eye');
-          } else {
-            pW.type = 'password';
-            showPass.classList.replace('fa-eye', 'fa-eye-slash');
-          }
-        });
-
-        showPassword.addEventListener('click', () => {
-          if (createPw.type === 'password' && confirmPw.type === 'password') {
-            createPw.type = 'text';
-            confirmPw.type = 'text';
-            showPassword.classList.replace('fa-eye-slash', 'fa-eye');
-          } else {
-            createPw.type = 'password';
-            confirmPw.type = 'password';
-            showPassword.classList.replace('fa-eye', 'fa-eye-slash');
-          }
-        });
-
-        /* Swaps both containers when Sign Up or Log In button is clicked */
-        const signup = document.getElementById('signup');
-        const signin = document.getElementById('signin');
-        const changeContainer = () => {
-          signup.classList.toggle('close');
-          signin.classList.toggle('close');
-        };
-      </script>
+      <a href="/signup">
+        <button onclick="changeContainer()">Sign Up!</button>
+      </a>
     </div>
+    <script src="./js/validationLogIn.js">
+      
+    </script>
   </body>
 </html>

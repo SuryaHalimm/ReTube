@@ -2,7 +2,6 @@ require('dotenv').config();
 const User = require('../models/user');
 const videoSchema = require('../models/video');
 const { hashPassword, comparePassword } = require('../helpers/crypto');
-const { celebrate } = require('celebrate');
 const jwt = require('jsonwebtoken');
 // const authValidator = require('../validator/auth');
 
@@ -21,7 +20,7 @@ const register = async (req, res) => {
     res.redirect('/login');
     return newUser.save();
   } catch (err) {
-    console.log(err.message);
+    res.status(500).json({ message: 'Server sedang sibuk' });
   }
 };
 
@@ -45,22 +44,21 @@ const login = async (req, res) => {
     res.cookie('accessToken', accessToken, { httpOnly: true });
     res.redirect('/index');
   } catch (err) {
-    console.log(err.message);
+    res.status(500).json({ message: 'Server sedang sibuk' });
   }
 };
 
 const upload = async (req, res) => {
-  const { title, fileVideo, description, thumbnail, uploadAt } = req.body;
   try {
     if (!req.user) {
       return res.redirect('/login');
     }
     const userWithVideo = new videoSchema({
-      title,
-      fileVideo,
-      description,
-      thumbnail,
-      uploadAt,
+      title: req.body.title,
+      fileVideo: req.files.fileVideo[0].filename,
+      description: req.body.description,
+      thumbnail: req.files.thumbnail[0].filename,
+      uploadAt: Date.now(),
     });
 
     const user = await User.findOneAndUpdate(
@@ -73,8 +71,45 @@ const upload = async (req, res) => {
     res.status(200).json({ user: user });
     return userWithVideo.save();
   } catch (err) {
-    console.log(err.message);
+    res.status(500).json({ message: 'Server sedang sibuk' });
   }
+};
+
+const getVideo = async (req, res) => {
+  const user = await User.findOne({ email: req.user.email });
+
+  try {
+    let videoPosted = [];
+    for (const videoId of user.videos) {
+      const videoDetail = await videoSchema.findOne({ _id: videoId }).exec();
+      videoPosted.push(videoDetail);
+    }
+    res.status(200).json({ videoPosted });
+  } catch (err) {
+    res.status(500).json({ message: 'Server sedang sibuk' });
+  }
+};
+
+const getDetailVideo = async (req, res) => {
+  try {
+    const videoId = req.params.videoId;
+    console.log(videoId);
+    const videoDetail = await videoSchema.findOne({ _id: videoId }).exec();
+
+    if (!videoDetail) {
+      return res
+        .status(404)
+        .json({ message: 'Detail Video dengan ID tidak ditemukan!' });
+    }
+    res.status(200).json({ videoDetail });
+  } catch (err) {
+    res.status(500).json({ message: 'Terjadi kesalahan pada server' });
+  }
+};
+
+const logout = (req, res) => {
+  res.cookie('accessToken', '', { maxAge: 1 });
+  res.redirect('/');
 };
 async function findByName(name) {
   return User.findByName(name);
@@ -86,4 +121,7 @@ module.exports = {
   login,
   findByName,
   upload,
+  logout,
+  getVideo,
+  getDetailVideo,
 };

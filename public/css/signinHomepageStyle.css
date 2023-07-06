@@ -211,6 +211,13 @@ nav section {
   color: blue;
 }
 
+.logout {
+  margin-left: 30px;
+}
+.logout a {
+  font-size: 18px;
+}
+
 .list-menu ul li {
   display: flex;
   flex-direction: column;
@@ -259,8 +266,8 @@ nav section {
 .container-upload-form {
   margin: auto;
   background-color: #eaeaea;
-  width: 500px;
-  height: 500px;
+  width: 470px;
+  height: 470px;
   border-radius: 10px;
 }
 
@@ -270,7 +277,17 @@ nav section {
   height: inherit;
   flex-direction: column;
   justify-content: space-around;
-  align-items: center;
+  align-items:start;
+  margin-left:20px;
+}
+
+#subButton{
+  width: 20%;
+}
+
+#subButton:hover{
+  background:black;
+  color: white;
 }
 
 .container-list-items form div {
@@ -280,6 +297,42 @@ nav section {
 
 .container-list-items {
   display: flex;
+}
+
+.container-home {
+  display: flex;
+}
+
+.video-area {
+  display: flex;
+  flex-wrap: wrap;
+  width: 100%;
+  color: black;
+}
+
+.video-area .video-container {
+  border-radius: 20px 20px 20px 20px;
+  width: 250px;
+  height: 240px;
+  margin: 10px;
+  padding: 10px;
+}
+
+.video-container:hover {
+  background-color: #eaeaea;
+  cursor: pointer;
+}
+
+.video-container .fileVideo {
+  border-radius: 20px 20px 20px 20px;
+  height: 60%;
+  background-size: cover;
+}
+
+.video-container .video-info {
+  height: 40%;
+  padding: 10px;
+  box-sizing: border-box;
 }
 
 @media only screen and (max-width: 992px) {

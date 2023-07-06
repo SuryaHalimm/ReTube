@@ -103,12 +103,12 @@ const getDetailVideo = async (req, res) => {
     }
     res.status(200).json({ videoDetail });
   } catch (err) {
-    res.status(500).json({ message: 'terjadi kesalahan pada server' });
+    res.status(500).json({ message: 'Terjadi kesalahan pada server' });
   }
 };
 
 const logout = (req, res) => {
-  res.cookie('access-token', '', { maxAge: 1 });
+  res.cookie('accessToken', '', { maxAge: 1 });
   res.redirect('/');
 };
 async function findByName(name) {
